@@ -3,13 +3,18 @@ ml-cloud-model
 ==============
 
 
-Add a short description here!
+Project to create ML model to regonize race of person.
 
 
 Description
 ===========
 
-A longer description of your project goes here...
+Recognizing Race of person will be able with ML model.
+
+With useful technology - Google Cloud Platform we implement Model on GCP->AI Platform as API.
+Any authenticated device will be able to request to API and get response with class (race of person).
+
+
 
 
 Note
