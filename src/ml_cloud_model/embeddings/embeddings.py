@@ -22,3 +22,5 @@ model = VGG16(weights='E:\\Nauka\\DL\\vgg16_weights_tf_dim_ordering_tf_kernels_n
 vgg16_feature = model.predict(img_arr)
 
 vgg16_feature.dump('embeddings.pickle')
+
+
