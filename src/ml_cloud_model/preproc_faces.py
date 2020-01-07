@@ -77,8 +77,6 @@ if __name__ == "__main__":
             continue
         input_images.append(img)
         races.append(race)
-        if img.shape != (224, 224, 3):
-            print("dupa")
 
     X_train, y_train, X_test, y_test = train_test_split_races(input_images, races)
 
