@@ -1,4 +1,6 @@
 from keras.applications.vgg16 import VGG16
+from keras_vggface.vggface import VGGFace
+from keras.models import Model
 import pickle
 import numpy as np
 from tqdm import tqdm
@@ -22,7 +24,11 @@ def generate_embs(pickle_file, vgg):
 
 
 if __name__ == "__main__":
-    model = VGG16()
+    model = VGGFace(model="resnet50")
+    layer_name = "flatten_1"
+    model = Model(model.input, model.get_layer(layer_name).output)
+
+    print(model.summary())
 
     with open(RESOURCES + "train_embeddings.pickle", "wb") as handle:
         pickle.dump(generate_embs(TRAIN_PATH, model), handle)
