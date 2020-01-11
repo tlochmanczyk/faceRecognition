@@ -1,4 +1,3 @@
-from keras.applications.vgg16 import VGG16
 from keras_vggface.vggface import VGGFace
 from keras.models import Model
 import pickle
