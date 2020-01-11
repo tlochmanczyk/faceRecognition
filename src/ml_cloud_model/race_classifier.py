@@ -2,6 +2,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.utils import to_categorical
 from keras.constraints import unit_norm
+import tensorflow as tf
 import pickle
 import numpy as np
 
@@ -10,9 +11,12 @@ train_faces, train_races, test_faces, test_races = RESOURCES + "train_embeddings
                                                    RESOURCES + "train_races.pickle", \
                                                    RESOURCES + "test_embeddings.pickle", RESOURCES + "test_races.pickle"
 
-model = Sequential()
-model.add(Dense(2048, activation="relu", input_shape=(2048,), kernel_constraint=unit_norm()))
-model.add(Dense(4, activation="softmax"))
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(20148, activation="relu", input_shape=(2048, ), kernel_constraint=unit_norm()),
+    tf.keras.layers.Dense(4, activation="softmax")
+])
+# model.add(Dense(2048, activation="relu", input_shape=(2048,), kernel_constraint=unit_norm()))
+# model.add(Dense(4, activation="softmax"))
 model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
 with open(train_faces, "rb") as handle:
@@ -29,4 +33,5 @@ y_train = to_categorical(y_train, num_classes=4)
 y_test = to_categorical(y_test, num_classes=4)
 
 model.fit(X_train, y_train, batch_size=128, epochs=15, validation_data=(X_test, y_test))
-model.save(RESOURCES + "race_model.h5")
+# model.save(RESOURCES + "race_model.h5")
+# tf.saved_model.save(model, RESOURCES + "race_clf/")
