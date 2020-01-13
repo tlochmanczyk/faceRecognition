@@ -12,7 +12,7 @@ train_faces, train_races, test_faces, test_races = RESOURCES + "train_embeddings
                                                    RESOURCES + "test_embeddings.pickle", RESOURCES + "test_races.pickle"
 
 model = tf.keras.Sequential([
-    tf.keras.layers.Dense(20148, activation="relu", input_shape=(2048, ), kernel_constraint=unit_norm()),
+    tf.keras.layers.Dense(2048, activation="relu", input_shape=(2048, ), kernel_constraint=unit_norm()),
     tf.keras.layers.Dense(4, activation="softmax")
 ])
 # model.add(Dense(2048, activation="relu", input_shape=(2048,), kernel_constraint=unit_norm()))
